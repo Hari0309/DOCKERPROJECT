@@ -1,9 +1,9 @@
-FROM amazonlinux:latest
+FROM ubuntu:latest
 
-#install httpd (web server)
-RUN yum -y update
-RUN yum -y install httpd httpd-tools
+# Install updates and Apache
+RUN apt-get update && apt-get install -y apache2
 
 EXPOSE 80
-#start web server
-CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
+
+# Start the web server
+CMD ["apache2ctl", "-D", "FOREGROUND"]
